@@ -1,0 +1,170 @@
+<title>Muslim Will Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --ink:#172033; --parchment:#F3EEE5; --surface:#FBF8F3; --gray:#6E7773; --burgundy:#7A263A; --gold:#C9A15B; --border:#E7E1D8;
+  --ink-3:#0F1526;
+  --serif:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display','Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --sh-card:0 1px 2px rgba(23,32,51,.03),0 8px 20px -14px rgba(23,32,51,.12);
+  --sh-hero:0 16px 36px -18px rgba(23,32,51,.42);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#D8D2C7;font-family:var(--sans);-webkit-font-smoothing:antialiased;display:grid;place-items:center;padding:24px 16px}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* ===== artboard 393 × 852. Vertical map (px from top):
+   0–46 status · 46–82 header · +24 · 106–188 welcome · +24 · 212–412 hero (200)
+   · +20 · 432–587 quick (155) · +20 · 607–745 reminder (138) · +16 · 761–825 nav (64)
+   · 14 · 839–844 home indicator · 852 ===== */
+.screen{width:393px;height:852px;background:var(--parchment);position:relative;overflow:hidden;color:var(--ink);box-shadow:0 30px 60px -30px rgba(23,32,51,.35);border-radius:6px;display:flex;flex-direction:column;padding:0 24px}
+.status{height:46px;flex:0 0 auto;display:flex;align-items:flex-end;justify-content:space-between;padding:0 6px 8px;font:700 15px/1 var(--sans)}
+.status i{display:inline-flex;gap:6px;align-items:center}
+.status svg{display:block}
+
+/* header 36 */
+.header{height:36px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:30px;height:30px;flex:0 0 auto}
+.logo b{display:block;font:800 18px/1 var(--serif);letter-spacing:-.02em;color:var(--ink)}
+.logo small{display:block;font:600 9px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:4px}
+.actions{display:flex;align-items:center;gap:8px}
+.bell{width:36px;height:36px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;color:var(--ink);position:relative;padding:0}
+.bell .badge{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:9px;background:var(--burgundy);color:#fff;font:700 10px/18px var(--sans);text-align:center;padding:0 5px;border:2px solid var(--parchment)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--parchment);display:grid;place-items:center;font:700 12px/1 var(--sans);letter-spacing:.04em;border:0;padding:0}
+
+/* welcome 82: eyebrow 14 · 8 · heading 36 · 8 · support 16 */
+.welcome{margin-top:24px;height:82px;flex:0 0 auto}
+.eyebrow{font:700 11px/14px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin:0}
+.welcome h1{font:800 34px/38px var(--serif);letter-spacing:-.025em;margin:8px 0 8px;color:var(--ink)}
+.welcome p{font:500 15px/16px var(--sans);color:var(--gray);margin:0}
+
+/* hero 200, padding 24 */
+.hero{margin-top:24px;position:relative;height:200px;flex:0 0 auto;border-radius:24px;background:radial-gradient(120% 90% at 100% 0%,#2A3556 0%,var(--ink) 48%,var(--ink-3) 100%);color:var(--parchment);padding:24px;box-shadow:var(--sh-hero);overflow:hidden;display:flex;flex-direction:column}
+.hero .eyebrow{color:rgba(243,238,229,.62)}
+.hero h2{font:800 24px/28px var(--serif);letter-spacing:-.02em;margin:8px 0 6px;color:#fff}
+.hero p{font:500 13px/18px var(--sans);color:rgba(243,238,229,.74);margin:0;max-width:210px}
+.hero .foot{margin-top:auto;display:flex;align-items:center;gap:12px}
+.ring{width:48px;height:48px;position:relative;flex:0 0 auto}
+.ring svg{display:block}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 11.5px/1 var(--sans);color:#fff}
+.hero .steps{font:600 12.5px/16px var(--sans);color:rgba(243,238,229,.85);flex:1;min-width:0}
+.btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border-radius:999px;border:0;background:var(--surface);color:var(--ink);font:700 14px/1 var(--sans);box-shadow:0 6px 16px -8px rgba(0,0,0,.5);flex:0 0 auto}
+.btn:hover{background:#fff}
+.btn:active{transform:translateY(1px)}
+.arch{position:absolute;right:-4px;top:-10px;width:164px;height:222px;pointer-events:none}
+
+/* quick cards 155, padding 16 · icon 30 · 16 · title 16 · 6 · body ≤3×14 · arrow bottom-right */
+.quick{margin-top:20px;height:155px;flex:0 0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.qcard{position:relative;background:var(--surface);border-radius:18px;padding:14px 14px 12px;box-shadow:var(--sh-card);border:1px solid rgba(231,225,216,.7);display:block;text-align:left;color:var(--ink);height:155px}
+.qcard .ic{width:30px;height:30px;border-radius:10px;background:var(--parchment);display:grid;place-items:center;color:var(--ink)}
+.qcard b{display:block;font:700 13.5px/16px var(--sans);letter-spacing:-.01em;margin-top:16px}
+.qcard p{font:500 10.5px/14px var(--sans);color:var(--gray);margin:6px 0 0}
+.qcard .go{position:absolute;right:12px;top:16px;width:24px;height:24px;border-radius:50%;border:1px solid var(--border);background:#fff;display:grid;place-items:center;color:var(--ink)}
+
+/* reminder 138, padding 18/20 · eyebrow 14 · 6 · heading 22 · 6 · body 2×17 · 6 · link 14 */
+.remind{margin-top:20px;position:relative;height:138px;flex:0 0 auto;background:var(--surface);border-radius:20px;padding:18px 20px;box-shadow:var(--sh-card);border:1px solid rgba(231,225,216,.7);overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.remind h3{font:800 17px/22px var(--serif);letter-spacing:-.015em;margin:6px 0 6px;color:var(--ink);max-width:230px}
+.remind p{font:500 12px/17px var(--sans);color:var(--gray);margin:0 0 6px;max-width:228px}
+.remind a{font:700 12.5px/14px var(--sans);color:var(--burgundy);text-decoration:none;display:inline-flex;align-items:center;gap:6px;width:max-content}
+.remind a:hover{text-decoration:underline;text-underline-offset:3px}
+.leaf{position:absolute;right:0;top:0;height:100%;width:116px;pointer-events:none}
+
+/* nav 64, 16 above the home indicator */
+.nav{margin:16px 4px 0;height:66px;flex:0 0 auto;background:rgba(251,248,243,.96);border-radius:999px;box-shadow:0 10px 30px -8px rgba(23,32,51,.22),0 0 0 1px rgba(23,32,51,.05);display:flex;padding:5px;gap:4px}
+.nav button{flex:1;border:0;background:none;display:grid;justify-items:center;align-content:center;gap:4px;color:var(--ink);font:600 11px/1 var(--sans);padding:0;position:relative;border-radius:999px;transition:background .18s}
+.nav button svg{width:23px;height:23px}
+.nav button.on{background:var(--sunken);font-weight:700}
+.nav button.on svg{stroke-width:2}
+.nav button:hover:not(.on),.nav button:active:not(.on){background:rgba(232,228,220,.6)}
+.home-ind{flex:1;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px}
+.home-ind span{width:134px;height:5px;border-radius:3px;background:var(--ink)}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 32 32"><path d="M4 26 12 6h4L8 26Z" fill="#C9A15B"/><path d="M13 26 21 6h4l-8 20Z" fill="#C9A15B"/><path d="M22 26 28 12v14Z" fill="#172033"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15V9.8a5 5 0 0 1 10 0V15l1.5 1.6h-13L6 15Z"/><path d="M9.3 18.4a1.8 1.8 0 0 0 3.4 0"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h6l4 4v10a1.5 1.5 0 0 1-1.5 1.5H6.5A1.5 1.5 0 0 1 5 17.5V5a1.5 1.5 0 0 1 1.5-1.5Z"/><path d="M12.5 3.8V8h3.8M8.5 12h5M8.5 15h3.5"/></symbol>
+    <symbol id="i-people" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="3"/><path d="M3 18c.4-2.9 2.7-4.6 5.5-4.6S13.6 15.1 14 18"/><circle cx="15.5" cy="9" r="2.3"/><path d="M14.6 13.4c2.3.3 3.9 1.8 4.2 4.2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9.5" width="12" height="9" rx="2.2"/><path d="M8 9.5V7a3 3 0 0 1 6 0v2.5"/><circle cx="11" cy="14" r="1"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h12M11 5l5 5-5 5"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 5 5 5-5 5"/></symbol>
+    <symbol id="n-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.6 12 4l8.5 6.6V18a2.5 2.5 0 0 1-2.5 2.5h-3.2v-5.2a1.3 1.3 0 0 0-1.3-1.3h-3a1.3 1.3 0 0 0-1.3 1.3v5.2H6A2.5 2.5 0 0 1 3.5 18v-7.4Z"/></symbol>
+    <symbol id="n-will" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4.5 4.5v10A2.5 2.5 0 0 1 16 20.5H7A2.5 2.5 0 0 1 4.5 18V6A2.5 2.5 0 0 1 7 3.5Z"/><path d="M14 3.8V8h4.2M8.5 12.5h7M8.5 16h4.5"/></symbol>
+    <symbol id="n-vault" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="14" rx="3"/><circle cx="12" cy="11.5" r="3.4"/><path d="M12 9.6v1.9l1.3 1.1M7 18.5v1.5M17 18.5v1.5"/></symbol>
+    <symbol id="n-profile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.2" r="3.7"/><path d="M4.8 20c.6-3.6 3.6-5.6 7.2-5.6s6.6 2 7.2 5.6"/></symbol>
+  </defs>
+</svg>
+
+<main class="screen" aria-label="Muslim Will home">
+  <div class="status"><span>9:41</span><i><svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx=".7" fill="#172033"/><rect x="4.6" y="4.7" width="3" height="6.3" rx=".7" fill="#172033"/><rect x="9.2" y="2.4" width="3" height="8.6" rx=".7" fill="#172033"/><rect x="13.8" y="0" width="3" height="11" rx=".7" fill="#172033"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#172033" stroke-width="1.5" stroke-linecap="round"><path d="M1.5 4.5a9.5 9.5 0 0 1 13 0M4 7.2a6 6 0 0 1 8 0M6.5 9.8a2.5 2.5 0 0 1 3 0"/></svg><svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="21" height="11" rx="3" fill="none" stroke="#172033" stroke-opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="1.6" fill="#172033"/><rect x="23" y="4" width="2" height="4" rx="1" fill="#172033" fill-opacity=".4"/></svg></i></div>
+
+  <header class="header">
+    <div class="logo"><svg><use href="#mark"/></svg><div><b>Muslim Will</b><small>a product of Patriva</small></div></div>
+    <div class="actions">
+      <button class="bell" type="button" aria-label="Notifications, 1 unread"><svg width="20" height="20"><use href="#i-bell"/></svg><span class="badge">1</span></button>
+      <button class="avatar" type="button" aria-label="Account, Nisreen M">NM</button>
+    </div>
+  </header>
+
+  <section class="welcome">
+    <p class="eyebrow">Welcome back,</p>
+    <h1>Nisreen.</h1>
+    <p>Pick up where you left off.</p>
+  </section>
+
+  <section class="hero" aria-label="Your estate plan">
+    <svg class="arch" viewBox="0 0 164 222" fill="none" aria-hidden="true">
+      <path d="M36 222V90c0-36 28-64 64-64s64 28 64 64v132" stroke="#C9A15B" stroke-opacity=".55" stroke-width="1.2"/>
+      <path d="M58 222V98c0-24 19-44 42-44s42 20 42 44v124" stroke="#C9A15B" stroke-opacity=".3" stroke-width="1"/>
+      <path d="M80 222V106c0-13 9-22 20-22s20 9 20 22v116" stroke="#F3EEE5" stroke-opacity=".12" stroke-width="1"/>
+      <circle cx="100" cy="26" r="3" fill="#C9A15B" fill-opacity=".7"/>
+      <path d="M14 222v-52" stroke="#C9A15B" stroke-opacity=".2" stroke-width="1"/>
+    </svg>
+    <p class="eyebrow">Your estate plan</p>
+    <h2>Complete your will</h2>
+    <p>Next, add your assets to help protect what matters.</p>
+    <div class="foot">
+      <div class="ring" aria-label="25 percent complete">
+        <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="rgba(243,238,229,.16)" stroke-width="4"/><circle cx="24" cy="24" r="20" fill="none" stroke="#C9A15B" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.4 125.7" transform="rotate(-90 24 24)"/></svg>
+        <b>25%</b>
+      </div>
+      <div class="steps">1 of 4 steps<br>complete</div>
+      <button class="btn" type="button">Continue <svg width="16" height="16"><use href="#i-arrow"/></svg></button>
+    </div>
+  </section>
+
+  <section class="quick" aria-label="Quick access">
+    <button class="qcard" type="button"><span class="ic"><svg width="18" height="18"><use href="#i-doc"/></svg></span><b>My Will</b><p>Continue or review your will.</p><span class="go"><svg width="13" height="13"><use href="#i-chev"/></svg></span></button>
+    <button class="qcard" type="button"><span class="ic"><svg width="18" height="18"><use href="#i-people"/></svg></span><b>Beneficiaries</b><p>Manage the people who matter most.</p><span class="go"><svg width="13" height="13"><use href="#i-chev"/></svg></span></button>
+    <button class="qcard" type="button"><span class="ic"><svg width="18" height="18"><use href="#i-lock"/></svg></span><b>My Vault</b><p>Keep your assets, obligations and final wishes safe.</p><span class="go"><svg width="13" height="13"><use href="#i-chev"/></svg></span></button>
+  </section>
+
+  <section class="remind" aria-label="Reminder">
+    <svg class="leaf" viewBox="0 0 116 138" fill="none" aria-hidden="true">
+      <path d="M74 138V72c0-18 14-32 32-32h10" stroke="#E7E1D8" stroke-width="1.2"/>
+      <path d="M88 138V84c0-11 9-20 20-20h8" stroke="#E7E1D8" stroke-width="1"/>
+      <path d="M56 128c6-22 22-36 44-40" stroke="#C9A15B" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M66 116c-4-9 2-19 12-21 3 9-3 18-12 21Z" fill="#C9A15B" fill-opacity=".16" stroke="#C9A15B" stroke-opacity=".5" stroke-width="1"/>
+      <path d="M80 102c-2-8 4-16 12-17 2 8-4 15-12 17Z" fill="#C9A15B" fill-opacity=".12" stroke="#C9A15B" stroke-opacity=".45" stroke-width="1"/>
+    </svg>
+    <p class="eyebrow">A reminder</p>
+    <h3>Life changes. Your plan should too.</h3>
+    <p>Review your will regularly to make sure it still reflects your wishes.</p>
+    <a href="#learn">Learn more <svg width="14" height="14"><use href="#i-arrow"/></svg></a>
+  </section>
+
+  <nav class="nav" aria-label="Primary">
+    <button class="on" type="button" aria-current="page"><svg><use href="#n-home"/></svg>Home</button>
+    <button type="button"><svg><use href="#n-will"/></svg>Will</button>
+    <button type="button"><svg><use href="#n-vault"/></svg>Vault</button>
+    <button type="button"><svg><use href="#n-profile"/></svg>Profile</button>
+  </nav>
+  <div class="home-ind"><span></span></div>
+</main>

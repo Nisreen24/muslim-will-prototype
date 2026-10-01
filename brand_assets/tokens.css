@@ -1,0 +1,151 @@
+/* Muslim Will design tokens v1.1 (20 Sep 2026)
+   Colour and type: design-system.md (canonical values fixed, derived values tunable).
+   Shape, spacing, elevation and component recipes: components.md (Jomo's structure, our colour and type).
+
+   Fonts (Google Fonts):
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap">
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Canonical colour, 60 / 30 / 10 */
+  --mw-parchment: #F3EEE5;   /* 60% environment */
+  --mw-ink: #172033;         /* 30% structure and type */
+  --mw-burgundy: #7A263A;    /* 10% signature: primary CTA, selected answer, legal milestone */
+
+  /* Derived tones (sRGB blends of the three above) */
+  --mw-ink-muted: #595E68;
+  --mw-ink-disabled: #B1B0B0;
+  --mw-line: #D9D5D0;
+  --mw-line-strong: #BFBDBB;
+  --mw-surface-raised: #FBF9F5;
+  --mw-surface-sunken: #E8E4DC;
+  --mw-burgundy-hover: #6B2539;
+  --mw-burgundy-pressed: #612538;
+  --mw-burgundy-soft: #E7DAD4;
+  --mw-on-burgundy: #FBF9F5;
+  --mw-scrim: rgba(23, 32, 51, .35);          /* dim behind a stacked sheet */
+
+  /* Type families */
+  --mw-font-display: 'DM Serif Display', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --mw-font-ui: 'Manrope', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mw-font-arabic: 'Amiri', 'Noto Naskh Arabic', 'Traditional Arabic', serif; /* proposal */
+
+  /* Type scale, Jomo sizes in our faces (font shorthand: weight size/line-height family) */
+  --mw-hero:        400 56px/60px var(--mw-font-display);   /* tab hero number or word, tabular */
+  --mw-display-l:   400 30px/36px var(--mw-font-display);   /* one-question headline, tracking -0.01em */
+  --mw-display-m:   400 24px/30px var(--mw-font-display);   /* document title */
+  --mw-screen-title:700 28px/34px var(--mw-font-ui);        /* tab screen title */
+  --mw-sheet-title: 700 17px/22px var(--mw-font-ui);
+  --mw-section:     700 18px/24px var(--mw-font-ui);        /* collapsible section header, ink-muted */
+  --mw-card-title:  700 17px/22px var(--mw-font-ui);
+  --mw-row:         500 15px/20px var(--mw-font-ui);
+  --mw-row-sub:     400 13px/18px var(--mw-font-ui);        /* ink-muted */
+  --mw-value:       600 15px/20px var(--mw-font-ui);        /* trailing value, ink-muted, tabular */
+  --mw-stat:        700 20px/24px var(--mw-font-ui);
+  --mw-stat-label:  500 13px/18px var(--mw-font-ui);
+  --mw-body:        400 15px/22px var(--mw-font-ui);
+  --mw-body-l:      400 17px/26px var(--mw-font-ui);
+  --mw-button:      600 16px/20px var(--mw-font-ui);
+  --mw-label:       600 13px/18px var(--mw-font-ui);        /* tracking 0.01em */
+  --mw-chip:        600 12px/16px var(--mw-font-ui);
+  --mw-caption:     400 12px/16px var(--mw-font-ui);        /* helper text, ink-muted */
+  --mw-overline:    700 11px/16px var(--mw-font-ui);        /* tracking 0.08em, uppercase */
+
+  /* Spacing (Jomo) */
+  --mw-screen-margin: 16px;
+  --mw-card-padding: 16px;
+  --mw-card-gap: 12px;
+  --mw-section-gap: 24px;
+  --mw-row-height: 52px;
+  --mw-row-height-sub: 64px;
+  --mw-button-height: 56px;
+  --mw-control-height: 36px;      /* segmented control, chip toggle */
+  --mw-icon-button: 40px;
+  --mw-tab-bar-height: 64px;
+  --mw-bottom-dock: 16px;
+
+  /* Shape (Jomo) */
+  --mw-radius-card: 16px;
+  --mw-radius-sheet: 32px;
+  --mw-radius-pill: 999px;
+  --mw-radius-input: 12px;
+  --mw-radius-thumb: 12px;
+
+  /* Elevation, Ink-tinted */
+  --mw-shadow-card: 0 1px 2px rgba(23, 32, 51, .04);
+  --mw-shadow-floating: 0 8px 24px rgba(23, 32, 51, .12);
+  --mw-shadow-sheet: 0 -8px 32px rgba(23, 32, 51, .12);
+  --mw-blur: blur(20px);
+}
+
+/* Reference component recipes (copy, do not import). Layout per components.md. */
+
+.mw-screen { background: var(--mw-parchment); color: var(--mw-ink); font: var(--mw-body); padding: 0 var(--mw-screen-margin); }
+
+/* Cards and rows */
+.mw-card { background: var(--mw-surface-raised); border-radius: var(--mw-radius-card); padding: var(--mw-card-padding); box-shadow: var(--mw-shadow-card); }
+.mw-stack { display: grid; gap: var(--mw-card-gap); }
+.mw-section { font: var(--mw-section); color: var(--mw-ink-muted); display: flex; align-items: center; gap: 6px; margin-top: var(--mw-section-gap); }
+.mw-row { display: flex; align-items: center; gap: 12px; min-height: var(--mw-row-height); font: var(--mw-row); }
+.mw-row + .mw-row { border-top: 1px solid var(--mw-line); }
+.mw-row .sub { font: var(--mw-row-sub); color: var(--mw-ink-muted); }
+.mw-row .value { margin-left: auto; font: var(--mw-value); color: var(--mw-ink-muted); font-variant-numeric: tabular-nums; }
+.mw-create { border: 1.5px dashed var(--mw-line-strong); border-radius: var(--mw-radius-card); padding: 12px 16px; color: var(--mw-ink-muted); display: flex; align-items: center; justify-content: space-between; }
+
+/* Selection */
+.mw-option { background: var(--mw-surface-raised); border-radius: var(--mw-radius-card); padding: 14px 16px; box-shadow: var(--mw-shadow-card); display: flex; align-items: center; gap: 12px; font: var(--mw-row); }
+.mw-radio { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--mw-line-strong); margin-left: auto; flex: 0 0 auto; }
+.mw-option.is-selected .mw-radio { border: 0; background: var(--mw-burgundy); }           /* white check drawn inside */
+.mw-segment { display: flex; background: var(--mw-surface-sunken); border-radius: var(--mw-radius-pill); padding: 3px; height: var(--mw-control-height); }
+.mw-segment > * { flex: 1; border-radius: var(--mw-radius-pill); font: var(--mw-label); text-align: center; line-height: 30px; }
+.mw-segment > .is-selected { background: var(--mw-surface-raised); box-shadow: var(--mw-shadow-card); }
+.mw-chip-toggle { height: var(--mw-control-height); padding: 0 14px; border-radius: var(--mw-radius-pill); background: var(--mw-surface-sunken); font: var(--mw-label); }
+.mw-chip-toggle.is-selected { background: var(--mw-ink); color: var(--mw-parchment); }
+
+/* Buttons */
+.mw-btn { height: var(--mw-button-height); padding: 0 20px; border-radius: var(--mw-radius-pill); border: 0; font: var(--mw-button); width: 100%; cursor: pointer; }
+.mw-btn-primary { background: var(--mw-burgundy); color: var(--mw-on-burgundy); }   /* one per screen */
+.mw-btn-primary:hover { background: var(--mw-burgundy-hover); }
+.mw-btn-primary:active { background: var(--mw-burgundy-pressed); }
+.mw-btn-primary:disabled { background: var(--mw-surface-sunken); color: var(--mw-ink-disabled); }
+.mw-btn-secondary { background: var(--mw-surface-raised); color: var(--mw-ink); box-shadow: var(--mw-shadow-floating); }
+.mw-btn-tertiary { background: var(--mw-surface-sunken); color: var(--mw-ink); }
+.mw-btn-icon { width: var(--mw-icon-button); height: var(--mw-icon-button); border-radius: 50%; background: var(--mw-surface-raised); box-shadow: var(--mw-shadow-floating); }
+.mw-btn-confirm { width: var(--mw-icon-button); height: var(--mw-icon-button); border-radius: 50%; background: var(--mw-burgundy); color: var(--mw-on-burgundy); }
+.mw-btn-confirm:disabled { background: var(--mw-burgundy-soft); }
+.mw-btn:focus-visible { outline: 2px solid var(--mw-ink); outline-offset: 2px; }
+.mw-dock { display: flex; gap: 12px; padding: var(--mw-bottom-dock) var(--mw-screen-margin) calc(var(--mw-bottom-dock) + env(safe-area-inset-bottom, 0px)); }
+
+/* Navigation */
+.mw-tabbar { position: fixed; left: var(--mw-screen-margin); right: var(--mw-screen-margin); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); height: var(--mw-tab-bar-height); border-radius: var(--mw-radius-pill); background: rgba(251, 249, 245, .92); backdrop-filter: var(--mw-blur); box-shadow: var(--mw-shadow-floating); display: flex; padding: 6px; }
+.mw-tab { flex: 1; display: grid; place-items: center; gap: 2px; border-radius: var(--mw-radius-thumb); font: 600 11px/14px var(--mw-font-ui); color: var(--mw-ink-muted); }
+.mw-tab.is-selected { background: var(--mw-ink); color: var(--mw-parchment); }
+.mw-floating-cta { position: fixed; left: var(--mw-screen-margin); right: var(--mw-screen-margin); bottom: calc(12px + var(--mw-tab-bar-height) + 12px + env(safe-area-inset-bottom, 0px)); box-shadow: var(--mw-shadow-floating); }
+
+/* Sheets */
+.mw-sheet { background: var(--mw-surface-raised); border-radius: var(--mw-radius-sheet) var(--mw-radius-sheet) 0 0; box-shadow: var(--mw-shadow-sheet); padding: 12px var(--mw-screen-margin) 0; }
+.mw-sheet::before { content: ""; display: block; width: 36px; height: 5px; border-radius: 3px; background: var(--mw-line-strong); margin: 0 auto 12px; }
+.mw-sheet-title { font: var(--mw-sheet-title); text-align: center; }
+.mw-sheet-behind { transform: scale(.94); filter: brightness(.65); }
+
+/* Status and feedback */
+.mw-chip { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 10px; border-radius: var(--mw-radius-pill); font: var(--mw-chip); background: var(--mw-surface-sunken); color: var(--mw-ink-muted); }
+.mw-chip-milestone { background: var(--mw-burgundy-soft); color: var(--mw-burgundy); }
+.mw-chip-milestone.is-done { background: var(--mw-burgundy); color: var(--mw-on-burgundy); }
+.mw-banner { background: var(--mw-surface-sunken); border-radius: var(--mw-radius-card); padding: 12px 16px; font: var(--mw-row-sub); color: var(--mw-ink); }
+.mw-toast { background: var(--mw-ink); color: var(--mw-parchment); border-radius: var(--mw-radius-card); padding: 14px 16px; font: var(--mw-label); }
+.mw-action-destructive { background: var(--mw-burgundy-soft); color: var(--mw-burgundy); }
+
+/* Inputs */
+.mw-input { font: 400 16px/22px var(--mw-font-ui); color: var(--mw-ink); background: var(--mw-surface-raised); border: 1px solid var(--mw-line-strong); border-radius: var(--mw-radius-input); padding: 12px 14px; width: 100%; }
+.mw-input:focus-visible { outline: 2px solid var(--mw-ink); outline-offset: 1px; }
+.mw-search { height: 44px; border-radius: var(--mw-radius-pill); background: var(--mw-surface-sunken); border: 0; padding: 0 16px 0 40px; font: var(--mw-row); }
+
+/* Progress */
+.mw-progress { height: 4px; border-radius: 2px; background: var(--mw-surface-sunken); overflow: hidden; }
+.mw-progress > span { display: block; height: 100%; background: var(--mw-ink); }
+.mw-progress.is-cap > span { background: var(--mw-burgundy); }   /* the one-third bequest meter only */
