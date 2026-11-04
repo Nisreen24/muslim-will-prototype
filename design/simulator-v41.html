@@ -2600,23 +2600,7 @@ var SCREENS={
   '<div class="dock"><button class="btn primary" type="button" data-go="gate">Get started '+ic('i-arrow',18)+'</button></div>'+
   HOMEIND+'</div>'}},
 
- gate:{cap:['03b · Auth gateway','After Skip or the final Get started: create an account or sign in'],render:function(){return ''+
-  '<div class="w2 grow" style="display:flex;flex-direction:column">'+STATUS+OBTOP(true,false)+
-  '<div class="gate-art"><img class="gate-img" src="../Assets/Lets%20get%20started.png" alt="Muslim Will arch mark inside an Islamic archway with gold orbits"></div>'+
-  '<div class="w2-copy gate-copy"><p class="k">Muslim Will</p><h2>Let\u2019s get you<br><em>started.</em></h2><p class="b">Create an account to save your progress and access your planning securely.</p></div>'+
-  '<div style="flex:1"></div>'+
-  '<div class="dock"><button class="btn primary" type="button" data-go="su0">Create an account '+ic('i-arrow',18)+'</button><button class="btn secondary" type="button" data-go="signin">Sign in</button></div>'+
-  '<p class="gate-foot">You can choose where to start after signing in.</p>'+
-  '<p class="w2-legal gate-legal">By continuing, you agree to Muslim Will’s <u>Terms of Use</u> and <u>Privacy Policy</u>.</p>'+
-  HOMEIND+'</div>'}},
-
  /* PARKED (not in ORDER) */
- ob4:{cap:['— · Parked','Name input with keyboard'],render:function(){return STATUS+
-  '<div class="j-top"><span></span><span></span></div>'+
-  '<div class="namewrap grow"><h2 class="j-title">How should we call you?</h2><div class="namefield"><input id="nm" class="nameinput" type="text" placeholder="First name" value="'+(S.name||'')+'" autocomplete="off">'+ic('i-pencil',18)+'</div></div>'+
-  '<div class="dock" style="padding-bottom:8px"><button class="btn primary" type="button" data-act="setname" '+((S.name||'').trim()?'':'disabled')+'>Continue</button></div>'+
-  KEYBOARD}},
-
  signin:{cap:['17 · Sign in','Existing Patriva account'],root:true,render:function(){return STATUS+
   '<div class="j-top"><button class="round" type="button" data-back="1" aria-label="Back">'+ic('i-back',20)+'</button><span></span></div>'+
   '<h2 class="j-title">Welcome back</h2><p class="j-sub">Sign in to your Patriva account to pick up where you left off.</p>'+
@@ -2665,13 +2649,6 @@ var SCREENS={
   '<div class="rules" id="rules">'+pwRulesHTML()+'</div></div>'+
   '<div class="dock"><button class="btn primary" type="button" data-go="su5" '+(pwOK()?'':'disabled')+'>Continue</button></div>'+HOMEIND}},
 
- su5:{cap:['06b · Verify email','Email branch step 4 of 4: code sent to the address entered; resend or change email'],render:function(){return STATUS+
-  '<div class="su-top"><button class="round" type="button" data-back="1" aria-label="Back">'+ic('i-back',20)+'</button><div class="line"><span style="width:100%"></span></div><span class="cnt">4 / 4</span></div>'+
-  '<div class="su-body grow"><h2 class="j-title">Verify your email</h2><p class="j-sub">We sent a verification code to:<br><b style="color:var(--ink)">'+esc(S.email||'your email')+'</b></p>'+
-  '<div class="f2" style="margin-top:10px"><label>Verification code</label><div class="pill">'+ic('i-mail',18)+'<input id="vcode" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="6-digit code" value="'+esc(S.vcode||'')+'" autocomplete="one-time-code" style="letter-spacing:.18em"></div><p class="help">The code expires in 10 minutes.</p></div>'+
-  '<div style="display:flex;justify-content:center;gap:22px;margin-top:6px"><button class="textlink" type="button" data-act="su:resend">Resend code</button><button class="textlink" type="button" data-act="su:changeemail">Change email</button></div></div>'+
-  '<div class="dock"><button class="btn primary" type="button" data-go="su4" '+((S.vcode||'').length===6?'':'disabled')+'>Verify email</button></div>'+HOMEIND}},
-
  su4:{cap:['07 · Acknowledgements','Shared final step for every sign-up method; no step counter'],render:function(){
   var n=S.ack.filter(Boolean).length, all=n===ACK.length;
   return STATUS+
@@ -2683,39 +2660,6 @@ var SCREENS={
   ACK.map(function(a,i){return '<div class="ack '+(S.ackOpen===i?'open':'')+'"><div class="row"><button class="cb '+(S.ack[i]?'on':'')+'" type="button" data-act="ack-check" data-i="'+i+'" aria-label="Accept '+a[0]+'">'+ic('i-check',13)+'</button><button class="h" type="button" data-act="ack-open" data-i="'+i+'"><span>'+a[0]+'</span>'+ic('i-chev',18).replace('<svg','<svg class="chv"')+'</button></div><div class="body">'+a[1]+'</div></div>'}).join('')+
   '<div style="height:4px"></div></div>'+
   '<div class="dock"><button class="btn primary" type="button" data-act="create" '+(all?'':'disabled')+'>Create my account '+ic('i-arrow',16)+'</button><p class="help">'+(all?'All acknowledgements accepted.':'Please review and accept all acknowledgements to continue.')+'</p></div>'+HOMEIND}},
-
- begin:{cap:['08 · Starting point','Two equal selectable cards, one Continue; routes to the Will packages or the Vault setup'],render:function(){var pk=S.startPick;return ''+
-  '<div class="w2 grow" style="display:flex;flex-direction:column">'+STATUS+
-  '<div class="w2-top"><span></span><span></span></div>'+
-  '<div class="w2-copy" style="padding-top:6px"><p class="k">Your account is ready</p><h2>What would you like to <em>start with?</em></h2></div>'+
-  '<div class="pick" role="group" aria-label="Start with">'+
-   '<p class="nudge">Most people start here</p>'+
-   '<div class="pickcard'+(pk==='will'?' sel':'')+'" role="button" aria-pressed="'+(pk==='will')+'" tabindex="0" data-act="start:will"><span class="chk">'+ic('i-check',13)+'</span><span class="art">'+ART_WILL+'</span><b>Create my Islamic Will</b><small>Build your will through a guided process.</small></div>'+
-   '<div class="pickcard'+(pk==='vault'?' sel':'')+'" role="button" aria-pressed="'+(pk==='vault')+'" tabindex="0" data-act="start:vault"><span class="chk">'+ic('i-check',13)+'</span><span class="art">'+ART_VAULT+'</span><b>Set up My Vault</b><small>Organize important information securely.</small></div>'+
-  '</div>'+
-  '<div style="flex:1"></div>'+
-  '<div class="dock"><button class="btn primary" type="button" data-act="start:go" '+(pk?'':'disabled')+'>Continue '+ic('i-arrow',18)+'</button></div>'+
-  '<p class="pick-foot">You can add the other anytime.</p>'+
-  HOMEIND+'</div>'}},
- plans:{cap:['09 · Choose a plan','Editorial header, compact illustrated cards, contextual detail, essentials accordion, sticky plan-specific CTA'],render:function(){var sel=S.plan<0?1:S.plan;return ''+
-  '<div class="w2 grow" style="display:flex;flex-direction:column">'+STATUS+'<div class="pl-tint">'+
-  '<div class="w2-top"><button class="round" type="button" data-back="1" aria-label="Back">'+ic('i-back',20)+'</button><span class="j-lang">EN</span></div>'+
-  '<div class="pl-head">'+(typeof ARCH!=='undefined'?ARCH.replace('class="arch"','class="arch"'):'')+'<p class="k">My Bridge \u00B7 Islamic Will</p><h2>Choose the plan<br>that <em>fits you.</em></h2><p>Create and maintain your Islamic Will.</p></div></div>'+
-  '<div class="pl-body">'+PLANUI.map(function(q,i){return planCardHTML(q,i,sel)}).join('')+
-   '<div class="pl-why" id="pl-why">'+planWhyHTML(sel)+'</div>'+
-   '<div class="pl-acc"><button type="button" data-act="incl:toggle" aria-expanded="false"><span class="ai">'+ic('i-list',18)+'</span><span class="tx"><b>Included in every Will plan</b><small>'+PLAN_EVERY.length+' essentials included</small></span><span class="cv">'+ic('i-down',18)+'</span></button><div class="list">'+PLAN_EVERY.map(function(x){return '<div>'+ic('i-check',13)+x+'</div>'}).join('')+'</div></div>'+
-  '</div>'+
-  '<div class="pl-bar"><div class="sum" id="pl-sum">'+planSumHTML(sel)+'</div><button class="btn primary" type="button" data-act="pickplan" id="pl-cta">Continue with '+PLANUI[sel].t+' '+ic('i-arrow',16)+'</button></div>'+
-  '<p class="pl-note">Prices in CAD. Taxes are added at checkout.</p>'+HOMEIND+'</div>'}},
- family:{cap:['10 · Family members','Family package: the count step the website promises'],render:function(){
-  var n=S.fam;
-  return STATUS+
-  '<div class="j-top"><button class="round" type="button" data-back="1" aria-label="Back">'+ic('i-back',20)+'</button><span class="j-lang">EN</span></div>'+
-  '<div class="su-body" style="gap:6px"><p class="eb2">Islamic Will Package (Family)</p><h2 class="j-title">How many family members?</h2><p class="j-sub">Each member is $7.99 /mo and prepares their own will. Start with who you know now; you can add more members later.</p></div>'+
-  '<div class="scrollv grow"><div class="stepper"><button type="button" data-act="fam" data-d="-1" '+(n<=1?'disabled':'')+' aria-label="Fewer">&minus;</button><span class="num">'+n+'</span><button type="button" data-act="fam" data-d="1" '+(n>=8?'disabled':'')+' aria-label="More">+</button></div>'+
-  '<p class="j-sub" style="margin-top:0">'+(n===1?'Just you for now':n+' members, including you')+'</p>'+
-  '<div class="famcard"><div class="r"><span>Islamic Will Package (Family)</span><b>$315 CAD one-time</b></div><div class="r"><span>'+n+' member'+(n>1?'s':'')+' × $7.99 /mo</span><b>+ $'+(n*7.99).toFixed(2)+' /mo</b></div><div class="r tot"><span>Due today</span><b>$315 CAD</b></div><div class="r"><span>Then monthly</span><b>$'+(n*7.99).toFixed(2)+' CAD</b></div></div></div>'+
-  '<div class="dock"><button class="btn primary" type="button" data-act="pickfam">Continue '+ic('i-arrow',16)+'</button><p class="help">Members can be added or removed later from Profile.</p></div>'+HOMEIND}},
 
  vaultintro:{cap:['11 · My Vault','Vault intro (client brief 2026-10-29): soft navy hero, four features, price, one CTA'],render:function(){return STATUS+
   '<div class="j-top"><button class="round" type="button" data-back="1" aria-label="Back">'+ic('i-back',20)+'</button><span class="j-lang">EN</span></div>'+
@@ -3054,14 +2998,6 @@ var SCREENS={
   '<div style="height:8px"></div></div></div>'+
   '<div class="dock"><button class="btn primary" type="button" data-act="to-dash">Return to dashboard '+ic('i-arrow',16)+'</button></div>'+HOMEIND}},
 
- path:{cap:['19 · Your path','Website sidebar timeline, five steps'],render:function(){
-  var steps=[['Application','Answer guided questions about you, your family and your estate.'],['Scholar review','A qualified scholar reviews your answers against Islamic inheritance rules.'],['Conformity review','We check the documents against provincial law.'],['Attestation','Sign with two witnesses; we guide you through it.'],['Set up your Vault','Store the signed documents and share access with people you trust.']];
-  return STATUS+
-  '<div class="j-top"><span></span><span class="j-lang">EN</span></div>'+
-  '<div class="su-body" style="gap:6px"><p class="eb2">'+(S.plan>=0?PLANS[S.plan].name+' selected':'Account created')+'</p><h2 class="j-title">Here’s your path</h2><p class="j-sub">Five steps from today to a signed, stored will.</p></div>'+
-  '<div class="scrollv grow" style="padding-top:18px"><div class="path">'+steps.map(function(s,i){return '<div class="step '+(i===0?'cur':'')+'"><span class="n">'+(i+1)+'</span><div><b>'+s[0]+'</b><small>'+s[1]+'</small>'+(i===0?'<span class="chip live">You are here</span>':'')+'</div></div>'}).join('')+'</div></div>'+
-  '<div class="dock"><button class="btn primary" type="button" data-go="notif">Start my application</button></div>'+HOMEIND}},
-
  notif:{cap:['20 · Reminders','Jomo-style permission ask'],render:function(){return STATUS+
   '<div class="j-top"><button class="round" type="button" data-back="1" aria-label="Back">'+ic('i-back',20)+'</button><span></span></div>'+
   '<div class="notifart"><div class="notifcard"><span class="ic">'+ic('i-bell',20)+'</span><div><b>Muslim Will</b><small>Your witnesses have both confirmed. Ready to sign.</small></div></div></div>'+
@@ -3074,37 +3010,7 @@ var SCREENS={
   '<div class="dock"><button class="btn primary" type="button" data-act="finish" data-toast="Reminders on. Welcome, '+esc(S.user)+'.">Allow reminders</button><button class="btn secondary" type="button" data-act="finish" data-toast="You can turn reminders on later in Profile.">Not now</button></div>'+HOMEIND}},
 
 
- dash:{cap:['21a · Home · previous','Superseded Will-centred dashboard, kept for comparison'],root:true,tab:'home',render:function(){
-  var pi=S.plan<0?1:S.plan, planName=PLANS[pi].label, seats=pi===2?S.fam:3, cur=S.chDone.indexOf(false), c=CHAPTERS[cur<0?0:cur];
-  var ahead=[['Application','About 30 min \u00B7 Auto-saves'],['Scholar review','Reviewed within 2\u20133 days'],['Conformity review','Reviewed within 3\u20135 days'],['Attestation','Guided Zoom session'],['Vault & delivery','After your documents are signed']];
-  return STATUS+'<div class="fh">'+
-  '<div class="head"><div class="logo"><svg class="mark"><use href="#mark"/></svg><div><b>Muslim Will</b><small>a product of Patriva</small></div></div><div class="acts"><button class="bell" type="button" data-toast="1 reminder: start chapter 1, About You">'+ic('i-bell',20)+'<span class="badge">1</span></button><button class="av36" type="button" data-tab="profile">NM</button></div></div>'+
-  '<div class="body">'+
-  '<div class="greet"><p class="eb">Assalamu Alaykum,</p><h1>'+esc(S.user)+'</h1></div>'+
-  (S.booked?'<div class="rvcard"><p class="eb">Your attestation is scheduled</p><p class="bigdate">'+fmtLong(S.booked.d)+'</p><p class="bigtime">'+S.booked.t+' \u2013 '+plusHour(S.booked.t)+' \u00B7 Zoom</p><p class="sub">Both witnesses have received calendar invites. We\u2019ll remind you the day before.</p>'+
-    '<div class="before"><p class="eb">Before your session</p><ul><li>'+ic('i-check',12)+'Have your government-issued photo ID ready</li><li>'+ic('i-check',12)+'Test your camera and microphone</li></ul></div>'+
-    '<div class="links2"><button type="button" data-act="at:resched:ask">Reschedule</button><i>\u00B7</i><button type="button" data-toast="Added to your calendar.">Add to my calendar</button></div></div>'
-  :S.reviewed?'<div class="rvcard"><p class="eb">Reviews complete</p><h2>Ready to schedule your attestation</h2><p class="sub">About 30 minutes on Zoom with your witnesses and a Patriva legal representative. We guide everyone through.</p>'+
-    '<div class="chips3"><span>'+ic('i-people',14)+'2 witnesses</span><span>'+ic('i-cal',14)+'~30 min</span><span>'+ic('i-id',14)+'Photo ID</span></div>'+
-    '<button class="cta2" type="button" data-go="attest">Schedule attestation '+ic('i-arrow',16)+'</button><button class="ghost2" type="button" data-go="docs">'+ic('i-id',16)+'Upload photo IDs \u00B7 '+S.ids.reduce(function(a,d){return a+d.filter(Boolean).length},0)+'/6</button></div>'
-  :!S.sub.will?'<div class="rvcard"><p class="eb">My Vault \u00B7 Active</p><h2>Your Vault is ready</h2><p class="sub">Start with what your family would need first: your obligations and your assets.</p>'+
-    '<button class="cta2" type="button" data-tab="vault">Open My Vault '+ic('i-arrow',16)+'</button><button class="ghost2" type="button" data-go="plans">'+ic('i-doc',16)+'Add the Islamic Will</button></div>'
-  :S.submitted?'<div class="rvcard"><p class="eb">Your Bridge \u00B7 In review</p><h2>Your application is being reviewed</h2><p class="sub">Reviews take 3\u20135 business days. We\u2019ll email you the moment they\u2019re done. Ref '+S.ref+'.</p>'+
-    '<div class="st"><span class="dot"><i></i></span><div><b>Scholar review</b><small>Islamic inheritance compliance</small></div><span class="k live">In progress</span></div>'+
-    '<div class="st"><span class="dot"></span><div><b>Conformity review</b><small>Provincial requirements</small></div><span class="k">Pending</span></div><button class="btn secondary" type="button" data-go="status" style="height:44px;margin-top:10px">View progress</button></div>'
-  :'<div class="hero"><p class="planline">Your <b>'+planName+'</b> is active.</p><p class="eb">'+(cur>0?'Continue your application':'Begin your application')+'</p><h2>'+(cur>0?'Pick up where you left off.':'Build your Bridge.')+'<em>'+(cur>0?(6-cur)+' chapter'+(6-cur>1?'s':'')+' to go.':'About 30 minutes.')+'</em></h2><p class="sub">Six guided chapters. We save as you type, so you can pause whenever you need.</p>'+
-  '<div class="chap"><span class="ci">'+ic('i-doc',18)+'</span><div><small>Chapter '+((cur<0?5:cur)+1)+' of 6</small><b>'+c[0]+'</b><span class="m">Estimated '+c[2]+'</span></div></div>'+
-  '<div class="acts2"><button class="cta" type="button" data-go="'+(cur<0?'ch6':['ch1','ch2','ch3','ch4','ch5','ch6'][cur])+'">'+(cur<0?'Review & submit':cur>0?'Continue chapter '+(cur+1):'Start Chapter 1')+' '+ic('i-arrow',16)+'</button><button class="ghost" type="button" data-go="bridge">'+ic('i-list',16)+' '+(cur>0?'All chapters':'Preview the chapters')+'</button></div></div>'+
-  '<div class="trust"><span>'+ic('i-cal',14)+'Pause & resume</span><span>'+ic('i-shield',14)+'Auto-saves</span><span>'+ic('i-check',14)+'Scholar-reviewed</span></div>')+
-  '<div class="invite"><span class="ii">'+ic('i-people',20)+'</span><div><p class="eb">Included with your plan</p><b>Invite your family when you\u2019re ready</b><p>You have <strong>'+seats+' unused seat'+(seats===1?'':'s')+'</strong> for your spouse and dependents. Seats never expire.</p></div><button class="send" type="button" data-toast="Invitations open after chapter 2, Your Family">Send invitations '+ic('i-arrow',14)+'</button></div>'+
-  (S.sub.will?'<div class="sech"><h3>What\u2019s ahead</h3><small>Your path to a completed Bridge</small></div>':'<div class="sech"><h3>Set up your Vault</h3><small>Four registers</small></div>')+
-  (S.sub.will?'':'<div class="ahead">'+[['Obligations Register','Debts, mahr, zakat',S.obs.length],['Estate Inventory','Assets and valuations',S.assets.length],['Sealed Disclosures','Released on your conditions',0],['Final Words','Video and audio messages',0]].map(function(a,i){return '<div class="ast '+(a[2]?'done':i===0?'cur':'')+'"><span class="n">'+(a[2]?ic('i-check',12):(i+1))+'</span><div><b>'+a[0]+'</b><small>'+a[1]+'</small></div><span class="k">'+(a[2]?a[2]+' added':'Empty')+'</span></div>'}).join('')+'</div>')+
-  (S.sub.will?'<div class="ahead">'+ahead.map(function(a,i){var here=S.reviewed?3:S.submitted?1:0,st=i<here?'done':i===here?'cur':'';return '<div class="ast '+st+'"><span class="n">'+(st==='done'?ic('i-check',12):(i+1))+'</span><div><b>'+a[0]+'</b><small>'+a[1]+'</small></div><span class="k">'+(st==='cur'?'You are here':st==='done'?'Done':'Step '+(i+1))+'</span></div>'}).join('')+'</div>':'')+
-  '<p class="legal">The Muslim Will is a limited scope document generation service. It is not a law firm and does not provide legal advice.</p>'+
-  '</div></div>'+tabbar('home')}},
-
  home:{cap:['21 · Home','State-aware Home: greeting, one status card, shortcuts for what you own, one recommendation'],root:true,tab:'home',render:function(){
-  if(!S.sub.will&&!S.sub.vault&&!S.vault)return SCREENS.begin.render();
   var m=homeModel(),ini=((S.user||S.legal||'N').trim()[0]||'N').toUpperCase();
   var remind=m.hasWill&&(m.executed||!m.submitted)?1:0;
   return STATUS+'<div class="hx">'+
@@ -3115,44 +3021,6 @@ var SCREENS={
   homeShortcuts(m)+
   homeRec(m)+
   '</div></div>'+tabbar('home')}},
-
- will:{cap:['18 · My Will','Jomo rules screen: sections and status'],root:true,tab:'will',render:function(){
-  if(!S.sub.will)return STATUS+'<div class="hero-top" style="height:64px"><div><p class="screen-title">Will</p><p class="screen-sub">Not in your plan yet</p></div></div>'+'<div class="scrollv grow withbars"><div class="form" style="gap:12px"><div class="lockcard"><span class="ic">'+ic('i-doc',20)+'</span><b>Add the Islamic Will</b><p>Your Vault is active. Add a will plan to build your Bridge: six guided chapters, scholar review and attestation.</p><button class="btn primary" type="button" data-go="plans">See will plans</button></div></div></div>'+tabbar('will');
-  var d=doneCount(), nx=nextSection();
-  function card(x,i){
-    var st=x.done?'done':(nx&&x.k===nx.k?'cur':'locked');
-    var chips=st==='done'?'<span class="chip done">'+ic('i-check',12)+'Complete</span><span class="chip">'+x.m+'</span>':st==='cur'?'<span class="chip live">Next up</span><span class="chip">About '+x.m+'</span>':'<span class="chip">'+ic('i-lock',12)+'Locked</span><span class="chip">'+x.m+'</span>';
-    return '<button class="card" type="button" style="text-align:left;border:0;width:100%'+(st==='locked'?';opacity:.6':'')+'" '+(st==='cur'?'data-go="q1"':st==='done'?'data-toast="'+x.t+' is complete. Tap to edit."':'data-toast="Finish the previous section first."')+'><div class="ctitle"><span class="ic">'+ic(['i-user','i-people','i-scale','i-scale','i-gift','i-shield','i-doc'][i],22)+'</span>'+x.t+'<span class="sp"></span>'+chev()+'</div><div class="chips">'+chips+'</div><div style="font:500 13px/1.4 var(--sans);color:var(--gray)">'+x.s+'</div></button>';
-  }
-  var inprog=S.sections.filter(function(x){return !x.done&&nx&&x.k===nx.k}), up=S.sections.filter(function(x){return !x.done&&!(nx&&x.k===nx.k)}), dn=S.sections.filter(function(x){return x.done});
-  return STATUS+'<div class="hero-top" style="height:64px"><div><p class="screen-title">Will</p><p class="screen-sub">'+d+' of 7 complete · '+pct()+'%</p></div><div class="icons"><button class="round" type="button" data-toast="Every answer is saved automatically">'+ic('i-q',20)+'</button><button class="round" type="button" data-toast="Download draft · Share with executor · Delete">'+ic('i-more',20)+'</button></div></div>'+
-  '<div class="scrollv grow withbars withfab"><div class="stack" style="padding-top:6px">'+
-  (inprog.length?sec('In progress')+inprog.map(function(x){return card(x,S.sections.indexOf(x))}).join(''):'')+
-  '<button class="create" type="button" data-toast="Bequests open after Heirs and shares">E.g., “Leave 10% to the mosque”<i>'+ic('i-plus',14)+'</i></button>'+
-  (up.length?sec('Up next'):'')+up.map(function(x){return card(x,S.sections.indexOf(x))}).join('')+
-  sec('Completed','Edit')+dn.map(function(x){return card(x,S.sections.indexOf(x))}).join('')+
-  '</div></div>'+
-  '<button class="btn primary fab" type="button" data-go="'+(nx?'q1':'done')+'">'+ic('i-plus',18)+(nx?'Continue: '+nx.t:'Review and sign')+'</button>'+tabbar('will')}},
-
- q1:{cap:['19 · Question','Option list, selected row expands'],render:function(){
-  var o=[['one','Yes, to one spouse','Your spouse takes a fixed share: <b>1/8</b> when there are children, <b>1/4</b> when there are none.'],['many','Yes, to more than one spouse','The spouses share the fixed portion equally between them.'],['no','No','No spousal share applies. Parents and children take the whole estate by their shares.']];
-  return STATUS+'<div class="q-top"><button class="round" type="button" data-back="1" aria-label="Back">'+ic('i-back',20)+'</button><div class="line"><span style="width:50%"></span></div><span class="cnt">1 / 2</span></div>'+
-  '<div class="q-copy"><p class="eyebrow">Heirs and shares</p><h2 class="hl">Are you married?</h2><p class="body">Answer as things are today. You can change it later.</p></div>'+
-  '<div class="stack grow scrollv" style="gap:10px">'+o.map(function(x){return '<div class="opt '+(S.married===x[0]?'on':'')+'" role="button" tabindex="0" data-pick="married" data-val="'+x[0]+'"><div class="h"><span>'+x[1]+'</span><i>'+ic('i-check',13)+'</i></div><div class="x">'+x[2]+'</div></div>'}).join('')+'</div>'+
-  '<div class="dock two"><button class="btn secondary" type="button" data-tab="will">Later</button><button class="btn primary" type="button" data-go="q2" '+(S.married?'':'disabled')+'>Continue</button></div>'+HOMEIND}},
-
- q2:{cap:['20 · Question','Stepper card, Jomo settings style'],render:function(){
-  return STATUS+'<div class="q-top"><button class="round" type="button" data-back="1" aria-label="Back">'+ic('i-back',20)+'</button><div class="line"><span style="width:100%"></span></div><span class="cnt">2 / 2</span></div>'+
-  '<div class="q-copy"><p class="eyebrow">Heirs and shares</p><h2 class="hl">How many children do you have?</h2><p class="body">Count all living children, including adults.</p></div>'+
-  '<div class="stack grow scrollv"><div class="card" style="gap:14px;padding:22px 16px 16px"><div class="stepper"><button type="button" data-act="kids-" aria-label="Fewer">−</button><b>'+S.children+'</b><button type="button" data-act="kids+" aria-label="More">+</button></div><div style="text-align:center;font:600 13px/1 var(--sans);color:var(--gray)">children</div></div>'+
-  '<div class="group"><button class="row" type="button" data-toast="Sons and daughters are counted separately in the next step"><span class="t">Sons and daughters<small>Set separately</small></span><span class="v">Later</span>'+chev()+'</button><button class="row" type="button" data-toast="Adopted children receive a bequest, not a fixed share"><span class="t">Adopted children<small>Added under Bequests</small></span><span class="v">0</span>'+chev()+'</button></div>'+
-  '<div class="banner">'+ic('i-scale',18)+'<span>'+(S.children===0?'<b>With no children</b>, your spouse’s share rises and your parents take a larger portion.':'<b>Sons and daughters</b> share the residue at 2 : 1 after fixed shares are paid.')+'</span></div></div>'+
-  '<div class="dock two"><button class="btn secondary" type="button" data-tab="will">Later</button><button class="btn primary" type="button" data-act="finish-heirs">Save section</button></div>'+HOMEIND}},
-
- done:{cap:['21 · Section saved','Jomo modal over the Will tab'],render:function(){
-  var nx=nextSection();
-  return '<div class="behind">'+'<section class="board">'+SCREENS.will.render()+'</section></div><div class="dim"></div>'+
-  '<div class="modal"><div class="ring"><i>'+ic('i-check',24)+'</i></div><h3>Heirs and shares saved</h3><p>Your will is now '+pct()+'% complete. '+(nx?'Next up: '+nx.t+', about 5 minutes.':'You can review and sign.')+'</p><button class="btn primary" type="button" data-tab="will" style="height:50px">'+(nx?'Got it':'Review my will')+'</button></div>'}},
 
  people:{cap:['22 · Beneficiaries','Sheet over Home, stacked'],render:function(){
   var need=2-S.witnesses;
@@ -3333,7 +3201,7 @@ var SCREENS={
   '<div class="dock"><button class="btn primary" type="button" '+(fam?'data-go="pfamroster"':'data-act="pfam:up"')+'>'+ic('i-people',16)+(fam?'Manage members':'Upgrade to Family Plan')+'</button></div>'+HOMEIND}}
 
 };
-var ORDER=['welcome','ob1','ob2','ob3','gate','su0','suname','su1','su2','su3','su5','su4','begin','plans','family','vaultintro','pay','paid','notif','dash','bridge','ch1','ch1s2','ch1s3','ch1done','ch2','ch2s2','ch2s3','ch2s4','ch2s5','ch2done','ch3','ch3s2','ch3done','ch4','ch4s2','ch4done','ch5','ch5done','ch6','submitted','attest','attesttime','attestdone','docs','vault','vob','vobadd','vinv','vinvadd','vseal','vfinal','home','signin','will','q1','q2','done','people','rel','profile','ppersonal','psecurity','pplan','pbilling','pfamily','support'];
+var ORDER=['welcome','ob1','ob2','ob3','su0','suname','su1','su2','su3','su4','vaultintro','pay','paid','notif','bridge','ch1','ch1s2','ch1s3','ch1done','ch2','ch2s2','ch2s3','ch2s4','ch2s5','ch2done','ch3','ch3s2','ch3done','ch4','ch4s2','ch4done','ch5','ch5done','ch6','submitted','attest','attesttime','attestdone','docs','vault','vob','vobadd','vinv','vinvadd','vseal','vfinal','home','signin','people','rel','profile','ppersonal','psecurity','pplan','pbilling','pfamily','support'];
 
 /* ---------- engine ---------- */
 var stage=document.getElementById('stage'), where=document.getElementById('where');
@@ -4451,7 +4319,7 @@ var _hs40=homeStatus;homeStatus=function(m){
  if(m.submitted)return card('Ready to sign','Your Islamic Will is ready','Print it and sign with two witnesses.','Choose how to sign','data-go="signhow"');
  if(S.chDone.every(Boolean))return card('Almost done','Choose how to protect it','Your Will is drafted.','Continue','data-go="protect"');
  return _hs40(m);};
-var _sc40=homeShortcuts;homeShortcuts=function(m){var h=_sc40(m);return S.attestPaid?h:h.replace('data-go="status"','data-go="signhow"').replace('<b>Review status</b>','<b>How to sign</b>').replace('i-scale','i-pencil');};
+var _sc40=homeShortcuts;homeShortcuts=function(m){var h=_sc40(m);if(S.attestPaid||h.indexOf('<b>Review status</b>')<0)return h;return h.replace(/<button class="scb" type="button" data-go="status"><span class="ti">[\s\S]*?<\/span><b>Review status<\/b>/,'<button class="scb" type="button" data-go="signhow"><span class="ti">'+ic('i-pencil',19)+'</span><b>How to sign</b>');};
 afterRows=function(){var sub=!!S.submitted,ex=!!S.executed,at=S.attestPaid,rv=!!S.reviewed;
  function row(icon,t,v,act){return '<button class="row" type="button" '+act+'><span class="ic">'+ic(icon,18)+'</span><span class="t">'+t+'</span><span class="v">'+v+'</span></button>';}
  return '<div class="after">'+

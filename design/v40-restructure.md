@@ -1,6 +1,6 @@
 # Muslim Will · v40 restructure (free-first)
 
-Source of truth: client meeting brief, 3 Nov 2026. Prototype: `design/simulator-v40.html` (`node serve.mjs` → http://localhost:3000). v39 is unchanged; all v40 changes are one layer at the end of the file.
+Source of truth: client meeting brief, 3 Nov 2026. Prototype: `design/simulator-v41.html`, the only version in the repo (`node serve.mjs` → http://localhost:3000, live at https://nisreen24.github.io/muslim-will-prototype/). Older versions (v8–v40) were removed on 4 Nov and remain in git history. Retired screens (listed under C. Remove) were deleted from the file; the v40/v41 logic is the block near the end of the script.
 
 ---
 
